@@ -1,5 +1,6 @@
 import net.sf.javaml.core.kdtree.KDTree;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONAware;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -23,8 +24,9 @@ public class LatLongSearcher {
         try {
             // Get array of locations from JSON
             Object object = parser.parse(json);
-            JSONObject jsonObject = (JSONObject) object;
-            toPrint = jsonObject.toString();
+            JSONArray jsonArray = (JSONArray) object;
+            // JSONObject jsonObject = (JSONObject) object;
+            toPrint = jsonArray.toString();
 
         } catch (ParseException e) {
             e.printStackTrace();
