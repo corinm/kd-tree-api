@@ -20,6 +20,12 @@ public class Main {
     port(Integer.valueOf(System.getenv("PORT")));
     staticFileLocation("/public");
 
+    get("/tree", (req, res) -> {
+      LatLongSearcher lls = new LatLongSearcher();
+      String json = req.body();
+      return "Test :)";
+    });
+
     get("/hello", (req, res) -> "Hello World");
 
     get("/", (request, response) -> {

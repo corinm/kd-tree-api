@@ -1,21 +1,32 @@
 import net.sf.javaml.core.kdtree.KDTree;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.util.LinkedList;
 import java.util.ListIterator;
 
 public class LatLongSearcher {
 
+    private JSONParser parser;
     private KDTree tree;
 
     LatLongSearcher() {
-
-        
-
+        this.parser = new JSONParser();
     }
 
     private void createTree(String json) {
 
-        // Get array of locations from JSON
+        try {
+            // Get array of locations from JSON
+            Object object = parser.parse(json);
+            JSONObject jsonObject = (JSONObject) object;
+            System.out.println(jsonObject);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         // Create tree, store in private property
             // tree.insert([lat, long], object);
 
