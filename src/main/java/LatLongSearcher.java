@@ -16,19 +16,22 @@ public class LatLongSearcher {
         this.parser = new JSONParser();
     }
 
-    private void createTree(String json) {
+    public String createTree(String json) {
+
+        String toPrint = "Nothing here yet";
 
         try {
             // Get array of locations from JSON
             Object object = parser.parse(json);
             JSONObject jsonObject = (JSONObject) object;
-            System.out.println(jsonObject);
+            toPrint = jsonObject.toString();
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
         // Create tree, store in private property
             // tree.insert([lat, long], object);
+        return toPrint;
 
     }
 

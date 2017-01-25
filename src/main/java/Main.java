@@ -20,10 +20,10 @@ public class Main {
     port(Integer.valueOf(System.getenv("PORT")));
     staticFileLocation("/public");
 
-    get("/tree", (req, res) -> {
+    post("/tree", (req, res) -> {
       LatLongSearcher lls = new LatLongSearcher();
       String json = req.body();
-      return "Test :)";
+      return lls.createTree(json);
     });
 
     get("/hello", (req, res) -> "Hello World");
