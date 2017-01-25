@@ -21,17 +21,17 @@ public class LatLongSearcher {
 
     }
 
-    public int searchMetLocations(Location currentLocation) {
+    // public int searchMetLocations(Location currentLocation) {
 
-        int result = 0;
+    //     int result = 0;
 
-        double[] search = new double[2];
-        search[0] = currentLocation.getLatitudeActual();
-        search[1] = currentLocation.getLongitudeActual();
+    //     double[] search = new double[2];
+    //     search[0] = currentLocation.getLatitudeActual();
+    //     search[1] = currentLocation.getLongitudeActual();
 
-        result = (int) tree.nearest(search);
+    //     result = (int) tree.nearest(search);
 
-        return result;
-    }
+    //     return result;
+    // }
 
 }
