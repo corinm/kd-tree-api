@@ -25,6 +25,10 @@ public class Main {
     lls.createTree();
 
     post("/tree/postcode", (req, res) -> {
+
+      String postcode = req.queryParams("postcode");
+
+
       return "";
     });
 
