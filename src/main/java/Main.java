@@ -26,6 +26,9 @@ public class Main {
     get("/db-test", (req, res) -> {
       Connection connection = null;
       Map<String, Object> attributes = new HashMap<>();
+
+      System.out.println("HERE");
+
       try {
         connection = DatabaseUrl.extract().getConnection();
 
@@ -41,12 +44,14 @@ public class Main {
 
         attributes.put("results", output);
         // return new ModelAndView(attributes, "db.ftl");
+        return "DB WORKING";
       } catch (Exception e) {
         attributes.put("message", "There was an error: " + e);
         // return new ModelAndView(attributes, "error.ftl");
+        return "There was an error: " + e;
       } finally {
         if (connection != null) try{connection.close();} catch(SQLException e){}
-        return "";
+        return "FINALLY";
       }
     });
 
