@@ -35,6 +35,7 @@ public class Main {
 
       // Store tree for later
         // Need database
+        // Convert tree to byte array (?)
         // Store in database
         // Get id from database
 

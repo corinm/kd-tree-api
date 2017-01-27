@@ -1,4 +1,8 @@
 import net.sf.javaml.core.kdtree.KDTree;
+
+import java.io.IOException;
+
+
 import org.json.*;
 public class Tree {
 
@@ -18,6 +22,25 @@ public class Tree {
         double[] keys = item.getKeys();
         JSONObject data = item.getData();
         this.tree.insert(keys, data);
+    }
+
+    /**
+     * Returns KDTree in the form of a byte[], intended for storage in a database
+     * 
+     * @return {byte[]} - KDTree in byte[] form
+     */
+    public byte[] getStorableTree() {
+
+        byte[] byteTree = new byte[0];
+
+        try {
+            byteTree = Serialiser.serialise((Object) this.tree);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return byteTree;
     }
 
     // public void createTree() {
