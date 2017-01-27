@@ -77,17 +77,18 @@ public class LatLongSearcher {
      * Given a raw Met Office location in JSONObject form, inserts it into KDTree
      */
     private void insertIntoTree(JSONObject rawMetLocation) {
+
         double latitude = Double.parseDouble(rawMetLocation.get("latitude").toString());
         double longitude = Double.parseDouble(rawMetLocation.get("longitude").toString());
         String name = rawMetLocation.get("name").toString();
         String id = rawMetLocation.get("id").toString();
-        String area = rawMetLocation.get("unitaryAuthArea").toString();
+        // String area = rawMetLocation.get("unitaryAuthArea").toString();
 
         // Build new JSON object
         JSONObject location = new JSONObject();
         location.put("id", id);
         location.put("name", name);
-        location.put("area", area);
+        // location.put("area", area);
 
         double[] key = new double[2];
         key[0] = latitude;
