@@ -66,7 +66,7 @@ public class Main {
 
           // attributes.put("results", output);
           // // return new ModelAndView(attributes, "db.ftl");
-          return "CONNECTED TO DB";
+          // return "CONNECTED TO DB";
         } catch (Exception e) {
           attributes.put("message", "There was an error: " + e);
           // return new ModelAndView(attributes, "error.ftl");
