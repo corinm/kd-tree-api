@@ -24,8 +24,22 @@ public class Main {
     final LatLongSearcher lls = new LatLongSearcher();
     lls.createTree();
 
-    post("/tree/postcode", (req, res) -> {
-      return "";
+    /*
+     * API Routes
+     */
+
+    /*
+     * POST: /tree/create - Creates a new tree, returns id of tree for later access
+     */
+    post("/tree/create", (req, res) -> {
+      return "CREATE ROUTE";
+    });
+
+    /*
+     * POST: /tree/search - Returns nearest match based on a given key
+     */
+    post("/tree/search", (req, res) -> {
+      return "SEARCH ROUTE";
     });
 
   }

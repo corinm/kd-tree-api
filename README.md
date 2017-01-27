@@ -18,10 +18,10 @@ Example body data:
   ...
 ]
 ```
-Will return a JSON object indicating success or failure
+On success will return an id for the created tree, for querying it
 ```
 {
-    success: true
+    id: 12345678910
 }
 ```
 

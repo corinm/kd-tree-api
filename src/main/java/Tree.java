@@ -9,16 +9,14 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
-public class LatLongSearcher {
+public class Tree {
 
     private JSONParser parser;
     private KDTree tree;
-    private String metApiKey;
 
-    LatLongSearcher() {
+    Tree() {
         this.parser = new JSONParser();
         this.tree = new KDTree(2);
-        this.metApiKey = System.getenv().get("MET_KEY");
     }
 
     public void createTree() {
@@ -54,22 +52,6 @@ public class LatLongSearcher {
 
         // return result;
         return 0;
-    }
-
-
-    /*
-     * Requests Met Office locations from Met Office API, returns JSONArray
-     */
-    private JSONArray retrieveMetOfficeLocations() throws UnirestException, ParseException {
-        HttpResponse<JsonNode> jsonResponse = Unirest.get("http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/sitelist")
-            .queryString("key", this.metApiKey)
-            .asJson();
-            
-        String rawBody = jsonResponse.getBody().toString();
-        JSONObject body = (JSONObject) this.parser.parse(rawBody);
-        JSONObject bodyLocations = (JSONObject) body.get("Locations");
-        JSONArray rawMetLocations = (JSONArray) bodyLocations.get("Location");
-        return rawMetLocations;
     }
 
 
