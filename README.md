@@ -4,7 +4,7 @@ An API built over Java Machine Learning Core's KDTree implementation (net.sf.jav
 Primarily designed as a service for my [weather-api](https://github.com/corinm/weather-api).
 
 ## API Documentation
-#### Create a new tree
+### Create a new tree
 **`POST /tree/create`**  
   * Header: `{ Content-Type: application/json }`  
   * Request body data: `[ { key1: 10, key2: 20, data: obj }, ... ]`  
@@ -26,7 +26,7 @@ Will return a JSON object indicating success or failure
 ```
 
 
-#### Find closest match to a given key
+### Find closest match to a given key
 **`POST /tree/search`**  
   * Header: `{ Content-Type: application/json }`  
   * Request body data: `{ key1: 10, key2: 20 }`  
