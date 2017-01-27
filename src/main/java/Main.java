@@ -49,12 +49,10 @@ public class Main {
           String query = "INSERT INTO trees (tree) VALUES (?) RETURNING id";
           PreparedStatement pstmt = (PreparedStatement) connection.prepareStatement(query);
           pstmt.setBytes(1, testBytes);
-          pstmt.executeUpdate();
-          // ResultSet returned = pstmt.getResultSet();
-          // int returnedId = returned.getInt(0);
-          // return returnedId;
-          return "DB OK";
-
+          pstmt.execute();
+          ResultSet returned = pstmt.getResultSet();
+          int returnedId = returned.getInt(0);
+          return returnedId;
 
           // stmt.executeUpdate("CREATE TABLE IF NOT EXISTS tree (tick timestamp)");
           // stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
