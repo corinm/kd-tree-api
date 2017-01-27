@@ -30,7 +30,7 @@ public class Main {
 
           Statement stmt = connection.createStatement();
 
-          stmt.executeUpdate("CREATE TABLE IF NOT EXISTS tree (tree_id INT NOT NULL, tree_binary BLOB NOT NULL, PRIMARY KEY (tree_id))");
+          stmt.executeUpdate("CREATE TABLE IF NOT EXISTS tree (tree_id INT NOT NULL, tree_binary BYTEA NOT NULL, PRIMARY KEY (tree_id))");
 
 
 
