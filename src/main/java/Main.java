@@ -43,9 +43,9 @@ public class Main {
 
 
           // Create table and schema
-          stmt.executeUpdate("CREATE TABLE IF NOT EXISTS trees (id SERIAL NOT NULL, tree BYTEA NOT NULL, PRIMARY KEY (id))");
+          stmt.executeUpdate("CREATE TABLE IF NOT EXISTS trees (id SERIAL PRIMARY KEY, tree BYTEA NOT NULL)");
           // Store something
-          String query = "INSERT INTO tree VALUES (?)";
+          String query = "INSERT INTO trees (tree) VALUES (?)";
           PreparedStatement pstmt = (PreparedStatement) connection.prepareStatement(query);
           pstmt.setBytes(1, testBytes);
 
