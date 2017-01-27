@@ -7,13 +7,15 @@ An API built over Java ML's KDTree implementation. Primarily designed as a servi
 **`POST /tree/create`**  
   * Header: `{ Content-Type: application/json }`  
   * Request body data: `[ { key1: 10, key2: 20, data: obj }, ... ]`  
-    * The keys can have any name, but must be **numbers** (decimals are okay).  
+    * The keys must be called key1 and key2.  
+    * The values must be **numbers** (decimals and negatives are okay).  
+    * Data can be any JavaScript object.  
 
 Example body data:
 ```
 [
-  { lat: 36.065805, long: -112.135609, data: { id: 'a1', name: 'Grand Canyon' } },
-  { lat: 32.732219, long: -117.149219, data: { id: 'a2', name: 'Balboa Park' } }
+  { key1: 36.065805, key2: -112.135609, data: { id: 'a1', name: 'Grand Canyon' } },
+  { key1: 32.732219, key2: -117.149219, data: { id: 'a2', name: 'Balboa Park' } }
   ...
 ]
 ```
@@ -29,15 +31,17 @@ On success will return an id for the created tree, for querying it
 **`POST /tree/search`**  
   * Header: `{ Content-Type: application/json }`  
   * Request body data: `{ key1: 10, key2: 20 }`  
-    * The keys can have any name, but must be **numbers** (decimals are okay).  
+    * The keys must be called key1 and key2.  
+    * The values must be **numbers** (decimals and negatives are okay).  
+    * Data can be any JavaScript object.  
 
 Example body data:
 ```
 {
   treeId: 12345678910,
   key: {
-    lat: 37.301600,
-    long: -112.945644
+    key1: 37.301600,
+    key2: -112.945644
   }
 }
 ```
