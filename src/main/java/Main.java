@@ -18,40 +18,41 @@ public class Main {
     port(Integer.valueOf(System.getenv("PORT")));
     staticFileLocation("/public");
 
-
     /*
      * API Routes
      */
 
     get("/db-test", (req, res) -> {
       Connection connection = null;
-      Map<String, Object> attributes = new HashMap<>();
+        Map<String, Object> attributes = new HashMap<>();
+        try {
+          connection = DatabaseUrl.extract().getConnection();
 
-      System.out.println("HERE");
+          Statement stmt = connection.createStatement();
 
-      try {
-        connection = DatabaseUrl.extract().getConnection();
+          stmt.executeUpdate("CREATE TABLE IF NOT EXISTS tree (tree_id INT NOT NULL, tree_binary BLOB NOT NULL, PRIMARY KEY (tree_id))");
 
-        Statement stmt = connection.createStatement();
-        stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
-        stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
-        ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
 
-        ArrayList<String> output = new ArrayList<String>();
-        while (rs.next()) {
-          output.add( "Read from DB: " + rs.getTimestamp("tick"));
+
+          // stmt.executeUpdate("CREATE TABLE IF NOT EXISTS tree (tick timestamp)");
+          // stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
+          // ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
+
+          // ArrayList<String> output = new ArrayList<String>();
+          // while (rs.next()) {
+          //   output.add( "Read from DB: " + rs.getTimestamp("tick"));
+          // }
+
+          // attributes.put("results", output);
+          // // return new ModelAndView(attributes, "db.ftl");
+          return "CONNECTED TO DB";
+        } catch (Exception e) {
+          attributes.put("message", "There was an error: " + e);
+          // return new ModelAndView(attributes, "error.ftl");
+          return "DB CONNECTION FAILED - " + e;
+        } finally {
+          if (connection != null) try{connection.close();} catch(SQLException e){}
         }
-
-        attributes.put("results", output);
-        // return new ModelAndView(attributes, "db.ftl");
-        return "DB WORKING";
-      } catch (Exception e) {
-        attributes.put("message", "There was an error: " + e);
-        // return new ModelAndView(attributes, "error.ftl");
-        return "There was an error: " + e;
-      } finally {
-        if (connection != null) try{connection.close();} catch(SQLException e){}
-      }
     });
 
     /*
