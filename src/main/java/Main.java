@@ -45,7 +45,7 @@ public class Main {
           // Create table and schema
           stmt.executeUpdate("CREATE TABLE IF NOT EXISTS trees (id SERIAL NOT NULL, tree BYTEA NOT NULL, PRIMARY KEY (id))");
           // Store something
-          stmt.executeUpdate("INSERT INTO trees VALUES (" + testBytes + ")");
+          stmt.executeUpdate("INSERT INTO trees VALUES (" + testBytes.toString() + ")");
 
 
           // stmt.executeUpdate("CREATE TABLE IF NOT EXISTS tree (tick timestamp)");
