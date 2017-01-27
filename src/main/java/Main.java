@@ -23,9 +23,21 @@ public class Main {
      */
     post("/tree/create", (req, res) -> {
       // Get data from req.body
+      String body = req.body();
+
       // Process JSON
+      JsonProcessor p = new JsonProcessor();
+      TreeCreatePayloadItem[] items = p.processCreateData(body);
+
       // Create tree
+      Tree t = new Tree();
+      t.createTree(items);
+
       // Store tree for later
+        // Need database
+        // Store in database
+        // Get id from database
+
       // Return tree's id
       return "CREATE ROUTE";
     });
