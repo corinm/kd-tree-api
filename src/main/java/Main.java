@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Map;
 
+import java.io.IOException;
+
 import static spark.Spark.*;
 
 import com.heroku.sdk.jdbc.DatabaseUrl;
@@ -30,10 +32,20 @@ public class Main {
 
           Statement stmt = connection.createStatement();
 
+          byte[] testBytes = new byte[0];
+
+          try {
+              testBytes = Serialiser.serialise((Object) "Test");
+
+          } catch (IOException e) {
+              e.printStackTrace();
+          }
+
+
           // Create table and schema
-          stmt.executeUpdate("CREATE TABLE IF NOT EXISTS trees (id SERIAL NOT NULL, tree BYTEA NOT NULL, PRIMARY KEY (tree_id))");
+          stmt.executeUpdate("CREATE TABLE IF NOT EXISTS trees (id SERIAL NOT NULL, tree BYTEA NOT NULL, PRIMARY KEY (id))");
           // Store something
-          stmt.executeUpdate("INSET INTO trees VALUES ()");
+          stmt.executeUpdate("INSET INTO trees VALUES (" + testBytes + ")");
 
 
           // stmt.executeUpdate("CREATE TABLE IF NOT EXISTS tree (tick timestamp)");
@@ -75,6 +87,7 @@ public class Main {
       // Store tree for later
         // Need database
         // Convert tree to byte array (?)
+        byte[] toStore = t.getStorableTree();
         // Store in database
         // Get id from database
 
