@@ -30,8 +30,10 @@ public class Main {
 
           Statement stmt = connection.createStatement();
 
-          stmt.executeUpdate("CREATE TABLE IF NOT EXISTS tree (tree_id INT NOT NULL, tree_binary BYTEA NOT NULL, PRIMARY KEY (tree_id))");
-
+          // Create table and schema
+          stmt.executeUpdate("CREATE TABLE IF NOT EXISTS trees (id SERIAL NOT NULL, tree BYTEA NOT NULL, PRIMARY KEY (tree_id))");
+          // Store something
+          stmt.executeUpdate("INSET INTO trees VALUES ()");
 
 
           // stmt.executeUpdate("CREATE TABLE IF NOT EXISTS tree (tick timestamp)");
