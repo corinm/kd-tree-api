@@ -1,7 +1,6 @@
 # kd-tree-api
 
-An API built over Java ML's KDTree implementation.  
-Primarily designed as a service for my [weather-api](https://github.com/corinm/weather-api).
+An API built over Java ML's KDTree implementation. Primarily designed as a service for my [weather-api](https://github.com/corinm/weather-api).
 
 ## API Documentation
 ### Create a new tree
