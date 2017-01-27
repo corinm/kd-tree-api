@@ -33,7 +33,13 @@ On success will return an id for the created tree, for querying it
 
 Example body data:
 ```
-{ lat: 37.301600, long: -112.945644 }
+{
+  treeId: 12345678910,
+  key: {
+    lat: 37.301600,
+    long: -112.945644
+  }
+}
 ```
 Will return a JSON object containing the `data` attribute of the closest match
 ```
