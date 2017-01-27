@@ -1,15 +1,4 @@
-import java.sql.*;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.Map;
-
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import static spark.Spark.*;
-import spark.template.freemarker.FreeMarkerEngine;
-import spark.ModelAndView;
-import static spark.Spark.get;
 
 import com.heroku.sdk.jdbc.DatabaseUrl;
 
@@ -17,12 +6,13 @@ public class Main {
 
   public static void main(String[] args) {
 
-    port(Integer.valueOf(System.getenv("PORT")));
-    staticFileLocation("/public");
+    /*
+     * Server setup
+     */
 
-    // Instantiate LatLongSearcher and create tree
-    final LatLongSearcher lls = new LatLongSearcher();
-    lls.createTree();
+    port(Integer.valueOf(System.getenv("PORT")));
+    // staticFileLocation("/public");
+
 
     /*
      * API Routes
@@ -32,6 +22,11 @@ public class Main {
      * POST: /tree/create - Creates a new tree, returns id of tree for later access
      */
     post("/tree/create", (req, res) -> {
+      // Get data from req.body
+      // Process JSON
+      // Create tree
+      // Store tree for later
+      // Return tree's id
       return "CREATE ROUTE";
     });
 
@@ -39,6 +34,11 @@ public class Main {
      * POST: /tree/search - Returns nearest match based on a given key
      */
     post("/tree/search", (req, res) -> {
+      // Get data from req.body
+      // Process JSON
+      // Retrieve stored tree
+      // Search tree for nearest match
+      // Return match's 'data' attribute
       return "SEARCH ROUTE";
     });
 
