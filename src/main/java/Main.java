@@ -38,6 +38,7 @@ public class Main {
         int idOfStoredTree = Database.storeTree(toStore);
 
       // Return tree's id
+      // TODO: Return this in JSON form
       return "Tree saved, id: " + idOfStoredTree;
     });
 
