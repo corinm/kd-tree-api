@@ -51,7 +51,6 @@ public class Main {
         return "There was an error: " + e;
       } finally {
         if (connection != null) try{connection.close();} catch(SQLException e){}
-        return "FINALLY";
       }
     });
 
