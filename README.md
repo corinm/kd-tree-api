@@ -1,40 +1,63 @@
-# java-getting-started
+# kd-tree-api
 
-A barebones Java app, which can easily be deployed to Heroku.
+An API built over Java Machine Learning Core's KDTree implementation (net.sf.javaml.core.kdtree).  
+Primarily designed as a service for my [weather-api](https://github.com/corinm/weather-api).
 
-This application supports the [Getting Started with Java on Heroku](https://devcenter.heroku.com/articles/getting-started-with-java) article - check it out.
+## API Documentation
+#### Create a new tree
+**`POST /tree/create`**  
+  * Header: `{ Content-Type: application/json }`  
+  * Request body data: `[ { key1: 10, key2: 20, data: obj }, ... ]`  
+    * The keys can have any name, but must be **numbers** (decimals are okay).  
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+Example body data:
+```
+[
+  { lat: 36.065805, long: -112.135609, data: { id: 'a1', name: 'Grand Canyon' } },
+  { lat: 32.732219, long: -117.149219, data: { id: 'a2', name: 'Balboa Park' } }
+  ...
+]
+```
+Will return a JSON object indicating success or failure
+```
+{
+    success: true
+}
+```
+
+
+#### Find closest match to a given key
+**`POST /tree/search`**  
+  * Header: `{ Content-Type: application/json }`  
+  * Request body data: `{ key1: 10, key2: 20 }`  
+    * The keys can have any name, but must be **numbers** (decimals are okay).  
+
+Example body data:
+```
+{ lat: 37.301600, long: -112.945644 }
+```
+Will return a JSON object containing the `data` attribute of the closest match
+```
+{
+    id: 'a3',
+    name: 'Zion National Park'
+}
+```
 
 ## Running Locally
 
-Make sure you have Java and Maven installed.  Also, install the [Heroku Toolbelt](https://toolbelt.heroku.com/).
-
-```sh
-$ git clone https://github.com/heroku/java-getting-started.git
-$ cd java-getting-started
-$ mvn install
-$ heroku local:start
-```
-
-Your app should now be running on [localhost:5000](http://localhost:5000/).
-
-If you're going to use a database, ensure you have a local `.env` file that reads something like this:
-
-```
-DATABASE_URL=postgres://localhost:5432/java_database_name
-```
+1. Install: Java, Maven and Heroku Toolbelt
+2. Run `git clone https://github.com/corinm/kd-tree-api`
+3. Run `cd kd-tree-api`
+4. Run `mvn install`
+5. Run `heroku local` to start the app
 
 ## Deploying to Heroku
 
-```sh
-$ heroku create
-$ git push heroku master
-$ heroku open
-```
+1. Run `heroku create`
+2. Run `git push heroku master`
+3. Run `heroku open`
 
-## Documentation
-
-For more information about using Java on Heroku, see these Dev Center articles:
-
-- [Java on Heroku](https://devcenter.heroku.com/categories/java)
+## Attributions
+  * This application was built upon Heroku's [java-getting-started](https://github.com/heroku/java-getting-started.git) seed project.
+  * The k-dimensional tree implementation used is from the [Java-ML library](http://java-ml.sourceforge.net/).
