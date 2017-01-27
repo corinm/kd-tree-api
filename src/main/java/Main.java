@@ -52,9 +52,14 @@ public class Main {
           pstmt.execute();
           ResultSet rs = pstmt.getResultSet();
 
+          String result = "";
+
           if (rs.next()) {
-            return rs.getInt(1);
+            result = String.valueOf(rs.getInt(1));
           }
+
+          return result;
+          
 
           // stmt.executeUpdate("CREATE TABLE IF NOT EXISTS tree (tick timestamp)");
           // stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
