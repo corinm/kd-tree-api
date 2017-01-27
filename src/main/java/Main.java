@@ -50,9 +50,10 @@ public class Main {
           PreparedStatement pstmt = (PreparedStatement) connection.prepareStatement(query);
           pstmt.setBytes(1, testBytes);
           pstmt.executeUpdate();
-          ResultSet returned = pstmt.getResultSet();
-          int returnedId = returned.getInt(0);
-          return returnedId;
+          // ResultSet returned = pstmt.getResultSet();
+          // int returnedId = returned.getInt(0);
+          // return returnedId;
+          return "DB OK";
 
 
           // stmt.executeUpdate("CREATE TABLE IF NOT EXISTS tree (tick timestamp)");
