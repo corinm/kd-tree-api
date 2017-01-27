@@ -51,8 +51,12 @@ public class Main {
           pstmt.setBytes(1, testBytes);
           pstmt.execute();
           ResultSet returned = pstmt.getResultSet();
-          int returnedId = returned.getInt(1);
-          return returnedId;
+
+          return returned.toString();
+
+
+          // int returnedId = returned.getInt(1);
+          // return returnedId;
 
           // stmt.executeUpdate("CREATE TABLE IF NOT EXISTS tree (tick timestamp)");
           // stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
