@@ -16,7 +16,7 @@ public class Main {
      */
 
     port(Integer.valueOf(System.getenv("PORT")));
-    // staticFileLocation("/public");
+    staticFileLocation("/public");
 
 
     /*
