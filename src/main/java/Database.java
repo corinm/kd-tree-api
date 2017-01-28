@@ -71,7 +71,7 @@ public class Database {
       connection = DatabaseUrl.extract().getConnection();
 
       // Load Tree
-      PreparedStatement pstmt = (PreparedStatement) connection.prepareStatement("SELECT FROM trees (tree) VALUES (?)");
+      PreparedStatement pstmt = (PreparedStatement) connection.prepareStatement("SELECT tree FROM trees WHERE id = ?");
       pstmt.setInt(1, id);
       pstmt.execute();
 
