@@ -53,12 +53,12 @@ public class Main {
       int requestedId = p.processSearchDataId(body);
       double[] requestedKey = p.processSearchDataKey(body);
 
-      return requestedKey[0];
-
       // Retrieve stored tree
+      byte[] retrievedTree = Database.loadTree(requestedId);
+
       // Search tree for nearest match
       // Return match's 'data' attribute
-      // return "SEARCH ROUTE";
+      return "SEARCH ROUTE";
     });
 
   }

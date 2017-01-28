@@ -9,6 +9,13 @@ import com.heroku.sdk.jdbc.DatabaseUrl;
 
 public class Database {
 
+    /**
+     * storeTree
+     * 
+     * @param {byte[]} byteTree - Binary version of tree to store in database
+     * 
+     * @return {int} - Database generated id for stored tree
+     */
     public static int storeTree(byte[] byteTree) {
 
       Connection connection = null;
@@ -51,6 +58,37 @@ public class Database {
       }
     }
     return 0;
+  }
+
+
+  public static byte[] loadTree(int id) {
+
+    Connection connection = null;
+    Map<String, Object> attributes = new HashMap<>();
+
+    try {
+      // Connect to PostgreSQL
+      connection = DatabaseUrl.extract().getConnection();
+
+      // Load Tree
+      PreparedStatement pstmt = (PreparedStatement) connection.prepareStatement("SELECT FROM trees (tree) VALUES (?)");
+      pstmt.setInt(1, id);
+      pstmt.execute();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+
+      } finally {
+        if (connection != null) {
+          try {
+            connection.close();
+          } catch (SQLException e) {
+            e.printStackTrace();
+          }
+      }
+    }
+
+    return new byte[0];
   }
 
 }
