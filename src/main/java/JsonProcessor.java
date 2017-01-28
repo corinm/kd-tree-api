@@ -67,12 +67,13 @@ public class JsonProcessor {
      * @return {double[]} - Array of two keys, to be used as key for searching tree
      */
     public double[] processSearchDataKey(String rawJson) {
-        JSONObject raw = new JSONObject(rawJson);
-        JSONArray array = raw.getJSONArray("key");
-        System.out.println(array);
-        // double[] key = new double[2];
-        // key[0] = array.get(0);
-        return new double[0];
+        JSONObject body = new JSONObject(rawJson);
+        JSONObject rawKey = body.getJSONObject("key");
+        System.out.println(rawKey);
+        double[] key = new double[2];
+        key[0] = Double.valueOf(rawKey.get("key1").toString());
+        key[1] = Double.valueOf(rawKey.get("key2").toString());
+        return key;
     }
 
 
