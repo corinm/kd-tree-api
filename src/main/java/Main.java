@@ -55,6 +55,8 @@ public class Main {
 
       // Retrieve stored tree
       byte[] retrievedTree = Database.loadTree(requestedId);
+      Tree tree = new Tree();
+      tree.loadExistingTree(retrievedTree);
 
       // Search tree for nearest match
       // Return match's 'data' attribute

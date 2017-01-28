@@ -44,7 +44,18 @@ public class Tree {
     }
 
 
+    public void loadExistingTree(byte[] byteTree) {
 
+        try {
+            this.tree = (KDTree) Serialiser.deserialise(byteTree);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
 
