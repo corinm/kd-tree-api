@@ -75,6 +75,17 @@ public class Database {
       pstmt.setInt(1, id);
       pstmt.execute();
 
+      // Retrieve tree
+      ResultSet rs = pstmt.getResultSet();
+
+      byte[] returnedTree = new byte[0];
+
+      if (rs.next()) {
+        returnedTree = rs.getBytes(1);
+      }
+
+      return returnedTree;
+
     } catch (Exception e) {
         e.printStackTrace();
 
