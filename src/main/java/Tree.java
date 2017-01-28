@@ -1,10 +1,11 @@
 import net.sf.javaml.core.kdtree.KDTree;
 
-import java.io.IOException;
-import java.io.Serializable;
-
 import org.json.*;
-public class Tree implements Serializable {
+
+/**
+ * Class containing a KDTree instance and associated helper methods
+ */
+public class Tree {
 
     private KDTree tree;
 
@@ -12,10 +13,26 @@ public class Tree implements Serializable {
         this.tree = new KDTree(2);
     }
 
+    /**
+     * Creates a new KDTree by inserting in array of TreeCreatePayloadItems
+     * 
+     * @param {TreeCreatePayloadItem[]} items - Rows of data to be added to tree
+     * @return {void}
+     */
     public void createTree(TreeCreatePayloadItem[] items) {
         for (TreeCreatePayloadItem item : items) {
             this.insertItemIntoTree(item);
         }
+    }
+
+    /**
+     * Searches tree for a given key, returns ?
+     * 
+     * @param {double[]} key - Key to search for in tree
+     * @returns {??} - Result of search
+     */
+    public Object searchTree(double[] key) {
+        return this.tree.nearest(key);
     }
 
     private void insertItemIntoTree(TreeCreatePayloadItem item) {
@@ -23,102 +40,5 @@ public class Tree implements Serializable {
         JSONObject data = item.getData();
         this.tree.insert(keys, data);
     }
-
-    // /**
-    //  * Returns KDTree in the form of a byte[], intended for storage in a database
-    //  * 
-    //  * @return {byte[]} - KDTree in byte[] form
-    //  */
-    // public byte[] getStorableTree() {
-
-    //     byte[] byteTree = new byte[0];
-
-    //     try {
-    //         byteTree = Serialiser.serialise((Object) this.tree);
-
-    //     } catch (IOException e) {
-    //         e.printStackTrace();
-    //     }
-
-    //     return byteTree;
-    // }
-
-
-    // public void loadExistingTree(byte[] byteTree) {
-
-    //     try {
-    //         this.tree = (KDTree) Serialiser.deserialise(byteTree);
-
-    //     } catch (IOException e) {
-    //         e.printStackTrace();
-    //     } catch (ClassNotFoundException e) {
-    //         e.printStackTrace();
-    //     }
-
-    // }
-
-
-
-    // public void createTree() {
-
-        // try {
-        //     JSONArray rawMetLocations = this.retrieveMetOfficeLocations();
-
-        //     // Turn rawMetLocations into JSON needed by original createTree function
-        //     for (Object rawMetLocation : rawMetLocations) {
-        //         this.insertIntoTree((JSONObject) rawMetLocation);
-        //     }
-
-        // } catch (UnirestException e) {
-        //     e.printStackTrace();
-        // } catch (ParseException e) {
-        //     e.printStackTrace();
-        // }
-
-    // }
-
-    // public int searchMetLocations(String postcode) {
-
-        // Look up lat and long for postcode
-        // Search in tree
-
-        // int result = 0;
-
-        // double[] search = new double[2];
-        // search[0] = currentLocation.getLatitudeActual();
-        // search[1] = currentLocation.getLongitudeActual();
-
-        // result = (int) tree.nearest(search);
-
-        // return result;
-    //     return 0;
-    // }
-
-
-    /*
-     * Given a raw Met Office location in JSONObject form, inserts it into KDTree
-     */
-    // private void insertIntoTree(JSONObject rawMetLocation) {
-
-    //     double latitude = Double.parseDouble(rawMetLocation.get("latitude").toString());
-    //     double longitude = Double.parseDouble(rawMetLocation.get("longitude").toString());
-    //     String name = rawMetLocation.get("name").toString();
-    //     String id = rawMetLocation.get("id").toString();
-    //     // String area = rawMetLocation.get("unitaryAuthArea").toString();
-
-    //     // Build new JSON object
-    //     JSONObject location = new JSONObject();
-    //     location.put("id", id);
-    //     location.put("name", name);
-    //     // location.put("area", area);
-
-    //     double[] key = new double[2];
-    //     key[0] = latitude;
-    //     key[1] = longitude;
-
-    //     this.tree.insert(key, location);
-    // }
-
     
-
 }

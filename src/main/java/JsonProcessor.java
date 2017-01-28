@@ -8,7 +8,6 @@ public class JsonProcessor {
      * processCreateBody
      * 
      * @param {String} rawJson - Raw request body
-     
      * @return {TreeCreatePayloadItem[]} - Data format required for creating a tree
      */
     public TreeCreatePayloadItem[] processCreateData(String rawJson) {
@@ -36,7 +35,6 @@ public class JsonProcessor {
      * createReturnIdJson
      * 
      * @param {int} id - Id of stored tree
-     * 
      * @return {String} - String of JSON containing {id: id}
      */
     public String createReturnIdJson(int id) {
@@ -50,7 +48,6 @@ public class JsonProcessor {
      * processSearchDataId
      * 
      * @param {String} rawJson - Raw request body
-     * 
      * @return {int} - Id of requested tree (for accessing in database)
      */
     public int processSearchDataId(String rawJson) {
@@ -63,7 +60,6 @@ public class JsonProcessor {
      * processSearchDataKey
      * 
      * @param {String} rawJson - Raw request body
-     * 
      * @return {double[]} - Array of two keys, to be used as key for searching tree
      */
     public double[] processSearchDataKey(String rawJson) {
@@ -74,6 +70,15 @@ public class JsonProcessor {
         key[0] = Double.valueOf(rawKey.get("key1").toString());
         key[1] = Double.valueOf(rawKey.get("key2").toString());
         return key;
+    }
+
+
+    /**
+     * Accepts result object from Tree.searchTree(), converts to String of JSON
+     */
+    public String processSearchResult(Object rawResult) {
+        JSONObject result = (JSONObject )rawResult;
+        return result.toString(2);
     }
 
 

@@ -63,11 +63,11 @@ public class Main {
       Gson gson = new Gson();
       Tree tree = gson.fromJson(jsonTree, Tree.class);
 
-      // tree.loadExistingTree(retrievedTree);
-
       // Search tree for nearest match
+      String result = p.processSearchResult(tree.searchTree(requestedKey));
+
       // Return match's 'data' attribute
-      return "SEARCH ROUTE";
+      return result;
     });
 
   }
