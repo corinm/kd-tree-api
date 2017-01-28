@@ -32,7 +32,7 @@ public class Main {
       t.createTree(items);
 
       // Convert tree to byte array
-      byte[] toStore = t.getStorableTree();
+      byte[] toStore = Serialiser.serialise(t);
       test.storeb1(toStore);
       // Store in database AND get id from database
       int idOfStoredTree = Database.storeTree(toStore);

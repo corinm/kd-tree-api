@@ -24,38 +24,38 @@ public class Tree implements Serializable {
         this.tree.insert(keys, data);
     }
 
-    /**
-     * Returns KDTree in the form of a byte[], intended for storage in a database
-     * 
-     * @return {byte[]} - KDTree in byte[] form
-     */
-    public byte[] getStorableTree() {
+    // /**
+    //  * Returns KDTree in the form of a byte[], intended for storage in a database
+    //  * 
+    //  * @return {byte[]} - KDTree in byte[] form
+    //  */
+    // public byte[] getStorableTree() {
 
-        byte[] byteTree = new byte[0];
+    //     byte[] byteTree = new byte[0];
 
-        try {
-            byteTree = Serialiser.serialise((Object) this.tree);
+    //     try {
+    //         byteTree = Serialiser.serialise((Object) this.tree);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //     }
 
-        return byteTree;
-    }
+    //     return byteTree;
+    // }
 
 
-    public void loadExistingTree(byte[] byteTree) {
+    // public void loadExistingTree(byte[] byteTree) {
 
-        try {
-            this.tree = (KDTree) Serialiser.deserialise(byteTree);
+    //     try {
+    //         this.tree = (KDTree) Serialiser.deserialise(byteTree);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //     } catch (ClassNotFoundException e) {
+    //         e.printStackTrace();
+    //     }
 
-    }
+    // }
 
 
 
