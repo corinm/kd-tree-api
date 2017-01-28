@@ -20,7 +20,10 @@ public class Serialiser {
     public static Object deserialise(byte[] data) throws IOException, ClassNotFoundException {
         ByteArrayInputStream in = new ByteArrayInputStream(data);
         ObjectInputStream is = new ObjectInputStream(in);
-        return is.readObject();
+        Object obj = is.readObject();
+        is.close();
+        in.close();
+        return obj;
     }
 
 }
