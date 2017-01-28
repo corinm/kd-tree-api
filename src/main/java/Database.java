@@ -83,6 +83,7 @@ public class Database {
 
       if (rs.next()) {
         returnedTree = rs.getBytes(1);
+        System.out.println("HERE");
       }
 
       return returnedTree;
