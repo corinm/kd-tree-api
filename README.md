@@ -19,10 +19,11 @@ Example body data:
   ...
 ]
 ```
-On success will return an id for the created tree, for querying it
+On success will return an id (integer) and secret (string) for the created tree, for querying it later
 ```
 {
-    id: 12345678910
+    id: 12345678910,
+    secret: "9idjrri4v30imbelutpe0jbka1"
 }
 ```
 
@@ -30,15 +31,16 @@ On success will return an id for the created tree, for querying it
 ### Find closest match to a given key
 **`POST /tree/search`**  
   * Header: `{ Content-Type: application/json }`  
-  * Request body data: `{ key1: 10, key2: 20 }`  
-    * The keys must be called key1 and key2.  
+  * Request body data: `{ id: 1, secret: 'aaa', keys: { key1: 10, key2: 20 } }`  
+    * `id` and `secret` are returned from `POST /tree/create`
+    * The keys must be called key1 and key2, in an object called key.  
     * The values must be **numbers** (decimals and negatives are okay).  
-    * Data can be any JavaScript object.  
 
 Example body data:
 ```
 {
-  treeId: 12345678910,
+  id: 12345678910,
+  secret: "9idjrri4v30imbelutpe0jbka1",
   key: {
     key1: 37.301600,
     key2: -112.945644

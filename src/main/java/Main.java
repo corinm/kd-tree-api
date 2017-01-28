@@ -21,27 +21,24 @@ public class Main {
      * POST: /tree/create - Creates a new tree, returns id of tree for later access
      */
     post("/tree/create", (req, res) -> {
-      // Get data from req.body
-      String body = req.body();
 
-      // Process JSON
+      Tree t = new Tree();
       JsonProcessor p = new JsonProcessor();
-      TreeCreatePayloadItem[] items = p.processCreateData(body);
+      Gson gson = new Gson();
 
       // Create tree
-      Tree t = new Tree();
+      String body = req.body();
+      TreeCreatePayloadItem[] items = p.processCreateData(body);
       t.createTree(items);
 
-      // Convert tree to byte array
-      Gson gson = new Gson();
+      // Store tree & get id, generate and store secret
       String jsonTree = gson.toJson(t);
-
-      // Store in database AND get id from database
       int idOfStoredTree = Database.storeTree(jsonTree);
-
-      String response = p.createReturnIdJson(idOfStoredTree);
+      String secret = SecretGenerator.generateNewSecret();
+      Database.storeSecret(idOfStoredTree, secret);
 
       // Return tree's id
+      String response = p.createReturnJson(idOfStoredTree, secret);
       return response;
     });
 

@@ -35,9 +35,10 @@ public class JsonProcessor {
      * @param {int} id - Id of stored tree
      * @return {String} - String of JSON containing {id: id}
      */
-    public String createReturnIdJson(int id) {
+    public String createReturnJson(int id, String secret) {
         JSONObject json = new JSONObject();
         json.put("id", id);
+        json.put("secret", secret);
         return json.toString(2);
     }
 

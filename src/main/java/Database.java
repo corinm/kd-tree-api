@@ -1,9 +1,4 @@
 import java.sql.*;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.Map;
-
-import java.io.IOException;
 
 import com.heroku.sdk.jdbc.DatabaseUrl;
 
@@ -19,7 +14,6 @@ public class Database {
     public static int storeTree(String tree) {
 
       Connection connection = null;
-      Map<String, Object> attributes = new HashMap<>();
 
       try {
         // Connect to PostgreSQL
@@ -27,7 +21,7 @@ public class Database {
 
         // Create table and schema
         Statement stmt = connection.createStatement();
-        stmt.executeUpdate("CREATE TABLE IF NOT EXISTS trees (id SERIAL PRIMARY KEY, tree TEXT NOT NULL)");
+        stmt.executeUpdate("CREATE TABLE IF NOT EXISTS trees (id SERIAL PRIMARY KEY, tree TEXT NOT NULL, secret TEXT)");
 
         // Store Tree
         PreparedStatement pstmt = (PreparedStatement) connection.prepareStatement("INSERT INTO trees (tree) VALUES (?) RETURNING id");
@@ -64,7 +58,6 @@ public class Database {
   public static String loadTree(int id) {
 
     Connection connection = null;
-    Map<String, Object> attributes = new HashMap<>();
 
     try {
       // Connect to PostgreSQL
@@ -101,6 +94,35 @@ public class Database {
     }
 
     return "";
+  }
+
+  public static void storeSecret(int id, String secret) {
+
+    Connection connection = null;
+
+    try {
+      // Connect to PostgreSQL
+      connection = DatabaseUrl.extract().getConnection();
+
+      // Load Tree
+      PreparedStatement pstmt = (PreparedStatement) connection.prepareStatement("UPDATE trees SET secret = ? WHERE id = ?");
+      pstmt.setString(1, secret);
+      pstmt.setInt(2, id);
+      pstmt.execute();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+
+      } finally {
+        if (connection != null) {
+          try {
+            connection.close();
+          } catch (SQLException e) {
+            e.printStackTrace();
+          }
+      }
+    }
+
   }
 
 }
