@@ -23,7 +23,7 @@ public class JsonProcessor {
         for (int i = 0; i < rawItems.length(); i++) {
             JSONObject rawItem = (JSONObject) rawItems.get(i);
 
-            TreeCreatePayloadItem item = convertItem(rawItem);
+            TreeCreatePayloadItem item = this.convertItem(rawItem);
             items[i] = item;
         }
         
@@ -93,9 +93,10 @@ public class JsonProcessor {
         double[] keys = new double[2];
         keys[0] = key1;
         keys[1] = key2;
-        JSONObject data = (JSONObject) rawItem.get("data");
+        JSONObject dataObject = (JSONObject) rawItem.get("data");
+        String dataString = dataObject.toString();
 
-        TreeCreatePayloadItem item = new TreeCreatePayloadItem(keys, data);
+        TreeCreatePayloadItem item = new TreeCreatePayloadItem(keys, dataString);
 
         return item;
     }

@@ -1,11 +1,9 @@
-import org.json.*;
-
 public class TreeCreatePayloadItem {
 
     private double[] keys;
-    private JSONObject data;
+    private String data;
 
-    TreeCreatePayloadItem(double[] keys, JSONObject data) {
+    TreeCreatePayloadItem(double[] keys, String data) {
         this.keys = keys;
         this.data = data;
     }
@@ -14,7 +12,7 @@ public class TreeCreatePayloadItem {
         return this.keys;
     }
 
-    public JSONObject getData() {
+    public String getData() {
         return this.data;
     }
 
