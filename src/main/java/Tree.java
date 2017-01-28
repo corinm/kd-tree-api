@@ -33,11 +33,10 @@ public class Tree {
      */
     public JSONObject searchTree(double[] key) {
         Object result = this.tree.nearest(key);
-        System.out.println(result.toString());
-        
-        TreeCreatePayloadItem resultJson = (TreeCreatePayloadItem) result;
-        System.out.println(resultJson.getData().toString());
-        return new JSONObject();
+        String rawJson = result.toString();
+
+        JSONObject json = new JSONObject(rawJson);
+        return json;
     }
 
     private void insertItemIntoTree(TreeCreatePayloadItem item) {
