@@ -21,15 +21,15 @@ public class Test {
             Object a = Serialiser.deserialise(b1);
             Object b = Serialiser.deserialise(b2);
             
-            Boolean result = b1.equals(b2);
-            System.out.println(result);
+            Boolean result1 = a.equals(b);
+            System.out.println(result1);
             
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        Boolean result = b1.equals(b2);
-        System.out.println(result);
+        Boolean result2 = b1.equals(b2);
+        System.out.println(result2);
     }
 
 }
