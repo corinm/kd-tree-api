@@ -21,8 +21,8 @@ public class Serialiser {
         ByteArrayInputStream in = new ByteArrayInputStream(data);
         ObjectInputStream is = new ObjectInputStream(in);
         Object obj = is.readObject();
-        is.close();
         in.close();
+        is.close();
         return obj;
     }
 
