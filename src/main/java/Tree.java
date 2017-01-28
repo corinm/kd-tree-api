@@ -1,10 +1,10 @@
 import net.sf.javaml.core.kdtree.KDTree;
 
 import java.io.IOException;
-
+import java.io.Serializable;
 
 import org.json.*;
-public class Tree {
+public class Tree implements Serializable {
 
     private KDTree tree;
 
