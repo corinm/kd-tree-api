@@ -10,6 +10,7 @@ public class Main {
 
     port(Integer.valueOf(System.getenv("PORT")));
     staticFileLocation("/public");
+    final Test test = new Test();
 
     /*
      * API Routes
@@ -32,6 +33,7 @@ public class Main {
 
       // Convert tree to byte array
       byte[] toStore = t.getStorableTree();
+      test.storeb1(toStore);
       // Store in database AND get id from database
       int idOfStoredTree = Database.storeTree(toStore);
 
@@ -55,6 +57,10 @@ public class Main {
 
       // Retrieve stored tree
       byte[] retrievedTree = Database.loadTree(requestedId);
+      test.storeb1(retrievedTree);
+      test.compareBytes();
+
+
       Tree tree = new Tree();
       tree.loadExistingTree(retrievedTree);
 

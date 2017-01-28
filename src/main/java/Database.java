@@ -80,8 +80,6 @@ public class Database {
 
       byte[] returnedTree = new byte[0];
 
-      System.out.println(returnedTree.toString());
-
       if (rs.next()) {
         returnedTree = rs.getBytes(1);
       }
