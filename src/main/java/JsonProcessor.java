@@ -59,6 +59,23 @@ public class JsonProcessor {
     }
 
 
+    /**
+     * processSearchDataKey
+     * 
+     * @param {String} rawJson - Raw request body
+     * 
+     * @return {double[]} - Array of two keys, to be used as key for searching tree
+     */
+    public double[] processSearchDataKey(String rawJson) {
+        JSONObject raw = new JSONObject(rawJson);
+        JSONArray array = raw.getJSONArray("key");
+        System.out.println(array);
+        // double[] key = new double[2];
+        // key[0] = array.get(0);
+        return new double[0];
+    }
+
+
     private TreeCreatePayloadItem convertItem(JSONObject rawItem) {
 
         /*
