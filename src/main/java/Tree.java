@@ -32,7 +32,9 @@ public class Tree {
      * @returns {JSONObject} - Result of search
      */
     public JSONObject searchTree(double[] key) {
-        return (JSONObject) this.tree.nearest(key);
+        Object result = this.tree.nearest(key);
+        JSONObject resultJson = (JSONObject) result;
+        return resultJson;
     }
 
     private void insertItemIntoTree(TreeCreatePayloadItem item) {
