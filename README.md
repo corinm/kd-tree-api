@@ -55,17 +55,20 @@ Will return a JSON object containing the `data` attribute of the closest match
 
 ## Running Locally
 
-1. Install: Java, Maven and Heroku Toolbelt
-2. Run `git clone https://github.com/corinm/kd-tree-api`
-3. Run `cd kd-tree-api`
-4. Run `mvn install`
-5. Run `heroku local` to start the app
+1. Install: Java, Maven and Heroku Toolbelt  
+2. Clone this repo: `git clone https://github.com/corinm/kd-tree-api`  
+3. Install and set up [PostgreSQL](https://www.postgresql.org/)  
+  * Create .env file containing `DATABASE_URL=postgresql://localhost:5432/test-db`  
+  * Create new database in command line `createdb test-db`  
+5. Run `cd kd-tree-api`  
+6. Run `mvn clean install`  
+7. Run `heroku local` to start the app  
 
 ## Deploying to Heroku
 
-1. Run `heroku create`
-2. Run `git push heroku master`
-3. Run `heroku open`
+1. Run `heroku create`  
+2. Run `git push heroku master`  
+3. Run `heroku open`  
 
 ## Attributions
   * This application was built upon Heroku's [java-getting-started](https://github.com/heroku/java-getting-started.git) seed project.
