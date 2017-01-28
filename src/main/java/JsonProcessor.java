@@ -95,6 +95,8 @@ public class JsonProcessor {
         keys[1] = key2;
         JSONObject dataObject = (JSONObject) rawItem.get("data");
         String dataString = dataObject.toString();
+        System.out.println("DATASTRING");
+        System.out.println(dataString);
 
         TreeCreatePayloadItem item = new TreeCreatePayloadItem(keys, dataString);
 
