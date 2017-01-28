@@ -37,8 +37,6 @@ public class Main {
       Gson gson = new Gson();
       String jsonTree = gson.toJson(t);
 
-      // byte[] toStore = Serialiser.serialise(t);
-      // test.storeb1(toStore);
       // Store in database AND get id from database
       int idOfStoredTree = Database.storeTree(jsonTree);
 
@@ -61,12 +59,10 @@ public class Main {
       double[] requestedKey = p.processSearchDataKey(body);
 
       // Retrieve stored tree
-      byte[] retrievedTree = Database.loadTree(requestedId);
-      test.storeb1(retrievedTree);
-      test.compareBytes();
+      String jsonTree = Database.loadTree(requestedId);
+      Gson gson = new Gson();
+      Tree tree = gson.fromJson(jsonTree, Tree);
 
-
-      Tree tree = new Tree();
       // tree.loadExistingTree(retrievedTree);
 
       // Search tree for nearest match

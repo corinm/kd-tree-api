@@ -61,7 +61,7 @@ public class Database {
   }
 
 
-  public static byte[] loadTree(int id) {
+  public static String loadTree(int id) {
 
     Connection connection = null;
     Map<String, Object> attributes = new HashMap<>();
@@ -79,14 +79,13 @@ public class Database {
       ResultSet rs = pstmt.getResultSet();
       System.out.println(rs.toString());
 
-      byte[] returnedTree = new byte[0];
+      String tree = "";
 
       if (rs.next()) {
-        returnedTree = rs.getBytes(1);
-        System.out.println("HERE");
+        tree = rs.getString(1);
       }
 
-      return returnedTree;
+      return tree;
 
     } catch (Exception e) {
         e.printStackTrace();
@@ -101,7 +100,7 @@ public class Database {
       }
     }
 
-    return new byte[0];
+    return "";
   }
 
 }
