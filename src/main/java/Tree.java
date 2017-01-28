@@ -41,7 +41,7 @@ public class Tree {
 
     private void insertItemIntoTree(TreeCreatePayloadItem item) {
         double[] keys = item.getKeys();
-        JSONObject data = item.getData();
+        String data = item.getData();
         this.tree.insert(keys, data);
     }
     
