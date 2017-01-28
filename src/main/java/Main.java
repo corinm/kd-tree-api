@@ -61,7 +61,7 @@ public class Main {
       // Retrieve stored tree
       String jsonTree = Database.loadTree(requestedId);
       Gson gson = new Gson();
-      Tree tree = gson.fromJson(jsonTree, Tree);
+      Tree tree = gson.fromJson(jsonTree, Tree.class);
 
       // tree.loadExistingTree(retrievedTree);
 
