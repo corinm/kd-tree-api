@@ -55,8 +55,7 @@ public class JsonProcessor {
      */
     public int processSearchDataId(String rawJson) {
         JSONObject raw = new JSONObject(rawJson);
-        System.out.println(raw);
-        return 0;
+        return raw.getInt("treeId");
     }
 
 
