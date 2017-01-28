@@ -55,7 +55,7 @@ public class Database {
   }
 
 
-  public static String loadTree(int id) {
+  public static String loadTree(int id, String secret) {
 
     Connection connection = null;
 
@@ -64,21 +64,28 @@ public class Database {
       connection = DatabaseUrl.extract().getConnection();
 
       // Load Tree
-      PreparedStatement pstmt = (PreparedStatement) connection.prepareStatement("SELECT tree FROM trees WHERE id = ?");
+      PreparedStatement pstmt = (PreparedStatement) connection.prepareStatement("SELECT tree, secret FROM trees WHERE id = ?");
       pstmt.setInt(1, id);
       pstmt.execute();
 
       // Retrieve tree
       ResultSet rs = pstmt.getResultSet();
-      System.out.println(rs.toString());
 
       String tree = "";
+      String actualSecret = "";
 
       if (rs.next()) {
         tree = rs.getString(1);
+        actualSecret = rs.getString(2);
       }
 
-      return tree;
+      if (secret.equals(actualSecret)) {
+        return tree;
+      } else {
+        throw new IncorrectSecretException();
+      }
+
+      
 
     } catch (Exception e) {
         e.printStackTrace();

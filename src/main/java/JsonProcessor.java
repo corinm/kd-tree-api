@@ -51,7 +51,18 @@ public class JsonProcessor {
      */
     public int processSearchDataId(String rawJson) {
         JSONObject raw = new JSONObject(rawJson);
-        return raw.getInt("treeId");
+        return raw.getInt("id");
+    }
+
+    /**
+     * processSearchDataSecret
+     * 
+     * @param {String} rawJson - Raw request body
+     * @return {String} - Secret for requested tree (for accessing in database)
+     */
+    public String processSearchDataSecret(String rawJson) {
+        JSONObject raw = new JSONObject(rawJson);
+        return raw.getString("secret");
     }
 
 

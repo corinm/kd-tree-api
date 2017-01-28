@@ -53,9 +53,10 @@ public class Main {
       JsonProcessor p = new JsonProcessor();
       int requestedId = p.processSearchDataId(body);
       double[] requestedKey = p.processSearchDataKey(body);
+      String providedSecret = p.processSearchDataSecret(body);
 
       // Retrieve stored tree
-      String jsonTree = Database.loadTree(requestedId);
+      String jsonTree = Database.loadTree(requestedId, providedSecret);
       Gson gson = new Gson();
       Tree tree = gson.fromJson(jsonTree, Tree.class);
 
