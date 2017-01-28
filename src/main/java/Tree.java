@@ -35,6 +35,8 @@ public class Tree {
         Object result = this.tree.nearest(key);
         String rawJson = result.toString();
 
+        System.out.println(rawJson);
+
         JSONObject json = new JSONObject(rawJson);
         return json;
     }
