@@ -26,13 +26,13 @@ public class Tree {
     }
 
     /**
-     * Searches tree for a given key, returns ?
+     * Searches tree for a given key, returns JSONObject
      * 
      * @param {double[]} key - Key to search for in tree
-     * @returns {??} - Result of search
+     * @returns {JSONObject} - Result of search
      */
-    public Object searchTree(double[] key) {
-        return this.tree.nearest(key);
+    public JSONObject searchTree(double[] key) {
+        return (JSONObject) this.tree.nearest(key);
     }
 
     private void insertItemIntoTree(TreeCreatePayloadItem item) {

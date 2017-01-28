@@ -76,9 +76,8 @@ public class JsonProcessor {
     /**
      * Accepts result object from Tree.searchTree(), converts to String of JSON
      */
-    public String processSearchResult(Object rawResult) {
-        JSONObject result = (JSONObject )rawResult;
-        return result.toString(2);
+    public String processSearchResult(JSONObject json) {
+        return json.toString(2);
     }
 
 
