@@ -62,7 +62,7 @@ public class Main {
 
 
       Tree tree = new Tree();
-      tree.loadExistingTree(retrievedTree);
+      // tree.loadExistingTree(retrievedTree);
 
       // Search tree for nearest match
       // Return match's 'data' attribute
