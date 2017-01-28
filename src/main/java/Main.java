@@ -30,11 +30,11 @@ public class Main {
       Tree t = new Tree();
       t.createTree(items);
 
-      // Store tree for later
       // Convert tree to byte array
       byte[] toStore = t.getStorableTree();
       // Store in database AND get id from database
       int idOfStoredTree = Database.storeTree(toStore);
+
       String response = p.createReturnIdJson(idOfStoredTree);
 
       // Return tree's id
@@ -46,7 +46,13 @@ public class Main {
      */
     post("/tree/search", (req, res) -> {
       // Get data from req.body
+      String body = req.body();
+
       // Process JSON
+      JsonProcessor p = new JsonProcessor();
+      int requestedId = p.processSearchDataId(body);
+      // double[] requestedKey = p.processSearchDataKey();
+
       // Retrieve stored tree
       // Search tree for nearest match
       // Return match's 'data' attribute

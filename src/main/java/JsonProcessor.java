@@ -32,10 +32,31 @@ public class JsonProcessor {
     }
 
 
+    /**
+     * createReturnIdJson
+     * 
+     * @param {int} id - Id of stored tree
+     * 
+     * @return {String} - String of JSON containing {id: id}
+     */
     public String createReturnIdJson(int id) {
         JSONObject json = new JSONObject();
         json.put("id", id);
         return json.toString();
+    }
+
+
+    /**
+     * processSearchDataId
+     * 
+     * @param {String} rawJson - Raw request body
+     * 
+     * @return {int} - Id of requested tree (for accessing in database)
+     */
+    public int processSearchDataId(String rawJson) {
+        JSONObject raw = new JSONObject(rawJson);
+        System.out.println(raw);
+        return 0;
     }
 
 
