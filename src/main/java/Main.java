@@ -59,7 +59,7 @@ public class Main {
       byte[] retrievedTree = Database.loadTree(requestedId);
       test.storeb1(retrievedTree);
       test.compareBytes();
-
+      
 
       Tree tree = new Tree();
       // tree.loadExistingTree(retrievedTree);
