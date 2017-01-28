@@ -12,11 +12,11 @@ public class Database {
     /**
      * storeTree
      * 
-     * @param {byte[]} byteTree - Binary version of tree to store in database
+     * @param {String]} tree - JSON form of tree
      * 
      * @return {int} - Database generated id for stored tree
      */
-    public static int storeTree(byte[] byteTree) {
+    public static int storeTree(String tree) {
 
       Connection connection = null;
       Map<String, Object> attributes = new HashMap<>();
@@ -27,11 +27,11 @@ public class Database {
 
         // Create table and schema
         Statement stmt = connection.createStatement();
-        stmt.executeUpdate("CREATE TABLE IF NOT EXISTS trees (id SERIAL PRIMARY KEY, tree BYTEA NOT NULL)");
+        stmt.executeUpdate("CREATE TABLE IF NOT EXISTS trees (id SERIAL PRIMARY KEY, tree STRING NOT NULL)");
 
         // Store Tree
         PreparedStatement pstmt = (PreparedStatement) connection.prepareStatement("INSERT INTO trees (tree) VALUES (?) RETURNING id");
-        pstmt.setBytes(1, byteTree);
+        pstmt.setString(1, tree);
         pstmt.execute();
 
         // Retrieve id of stored tree

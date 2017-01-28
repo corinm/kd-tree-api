@@ -1,5 +1,7 @@
 import static spark.Spark.*;
 
+import com.google.gson.Gson;
+
 public class Main {
 
   public static void main(String[] args) {
@@ -32,10 +34,13 @@ public class Main {
       t.createTree(items);
 
       // Convert tree to byte array
-      byte[] toStore = Serialiser.serialise(t);
-      test.storeb1(toStore);
+      Gson gson = new Gson();
+      String jsonTree = gson.toJson(t);
+
+      // byte[] toStore = Serialiser.serialise(t);
+      // test.storeb1(toStore);
       // Store in database AND get id from database
-      int idOfStoredTree = Database.storeTree(toStore);
+      int idOfStoredTree = Database.storeTree(jsonTree);
 
       String response = p.createReturnIdJson(idOfStoredTree);
 
@@ -59,7 +64,7 @@ public class Main {
       byte[] retrievedTree = Database.loadTree(requestedId);
       test.storeb1(retrievedTree);
       test.compareBytes();
-      
+
 
       Tree tree = new Tree();
       // tree.loadExistingTree(retrievedTree);
