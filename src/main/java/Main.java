@@ -53,7 +53,7 @@ public class Main {
       int requestedId = p.processSearchDataId(body);
       double[] requestedKey = p.processSearchDataKey(body);
 
-      return requestedKey.toString();
+      return requestedKey[0];
 
       // Retrieve stored tree
       // Search tree for nearest match
