@@ -12,7 +12,6 @@ public class Main {
 
     port(Integer.valueOf(System.getenv("PORT")));
     staticFileLocation("/public");
-    final Test test = new Test();
 
     /*
      * API Routes
