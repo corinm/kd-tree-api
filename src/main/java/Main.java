@@ -63,7 +63,6 @@ public class Main {
       Tree tree = gson.fromJson(jsonTree, Tree.class);
 
       // Search tree for nearest match
-      
       String result = p.processSearchResult(tree.searchTree(requestedKey));
 
       // Return match's 'data' attribute

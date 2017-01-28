@@ -1,6 +1,4 @@
 import org.json.*;
-import org.json.simple.parser.JSONParser;
-import java.util.Set;
 
 public class JsonProcessor {
 
@@ -40,7 +38,7 @@ public class JsonProcessor {
     public String createReturnIdJson(int id) {
         JSONObject json = new JSONObject();
         json.put("id", id);
-        return json.toString();
+        return json.toString(2);
     }
 
 
@@ -95,8 +93,6 @@ public class JsonProcessor {
         keys[1] = key2;
         JSONObject dataObject = (JSONObject) rawItem.get("data");
         String dataString = dataObject.toString();
-        System.out.println("DATASTRING");
-        System.out.println(dataString);
 
         TreeCreatePayloadItem item = new TreeCreatePayloadItem(keys, dataString);
 
