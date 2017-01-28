@@ -31,6 +31,14 @@ public class JsonProcessor {
         return items;
     }
 
+
+    public String createReturnIdJson(int id) {
+        JSONObject json = new JSONObject();
+        json.append("id", id);
+        return json.toString();
+    }
+
+
     private TreeCreatePayloadItem convertItem(JSONObject rawItem) {
 
         /*

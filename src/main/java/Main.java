@@ -31,15 +31,14 @@ public class Main {
       t.createTree(items);
 
       // Store tree for later
-        // Need database
-        // Convert tree to byte array (?)
-        byte[] toStore = t.getStorableTree();
-        // Store in database AND get id from database
-        int idOfStoredTree = Database.storeTree(toStore);
+      // Convert tree to byte array
+      byte[] toStore = t.getStorableTree();
+      // Store in database AND get id from database
+      int idOfStoredTree = Database.storeTree(toStore);
+      String response = p.createReturnIdJson(idOfStoredTree);
 
       // Return tree's id
-      // TODO: Return this in JSON form
-      return "Tree saved, id: " + idOfStoredTree;
+      return response;
     });
 
     /*
