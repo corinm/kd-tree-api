@@ -77,6 +77,7 @@ public class Database {
 
       // Retrieve tree
       ResultSet rs = pstmt.getResultSet();
+      System.out.println(rs.toString());
 
       byte[] returnedTree = new byte[0];
 
