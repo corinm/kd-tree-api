@@ -16,6 +16,18 @@ public class Test {
     }
 
     public void compareBytes() {
+
+        try {
+            Object a = Serialiser.deserialise(b1);
+            Object b = Serialiser.deserialise(b2);
+            
+            Boolean result = b1.equals(b2);
+            System.out.println(result);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         Boolean result = b1.equals(b2);
         System.out.println(result);
     }
