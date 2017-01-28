@@ -51,7 +51,7 @@ public class Main {
       // Process JSON
       JsonProcessor p = new JsonProcessor();
       int requestedId = p.processSearchDataId(body);
-      double[] requestedKey = p.processSearchDataKey();
+      double[] requestedKey = p.processSearchDataKey(body);
 
       // Retrieve stored tree
       // Search tree for nearest match
