@@ -1,6 +1,9 @@
 # kd-tree-api
 
-An API built over Java ML's KDTree implementation. Primarily designed as a service for my [weather-api](https://github.com/corinm/weather-api).
+A web service for creating and searching k-dimensional trees.  
+* Provides an API wrapper for Java ML's KDTree implementation.  
+* Trees are stored in a PostgreSQL database via Gson serialisation.  
+* Primarily designed as a service for my [weather-api](https://github.com/corinm/weather-api).  
 
 ## API Documentation
 ### Create a new tree
