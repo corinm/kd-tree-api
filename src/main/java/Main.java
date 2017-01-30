@@ -10,7 +10,9 @@ public class Main {
      * Server setup
      */
 
-    port(Integer.valueOf(System.getenv("PORT")));
+    int port = Integer.valueOf(System.getenv("PORT"));
+    port(port);
+    System.out.println("kd-tree-api starting on port: " + port);
     staticFileLocation("/public");
 
     /*
