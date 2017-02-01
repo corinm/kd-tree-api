@@ -1,0 +1,1 @@
+public class DatabaseConnectionException extends Exception {}

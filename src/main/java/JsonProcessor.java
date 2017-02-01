@@ -56,9 +56,13 @@ public class JsonProcessor {
      * @param {String} rawJson - Raw request body
      * @return {int} - Id of requested tree (for accessing in database)
      */
-    public int processSearchDataId(String rawJson) {
-        JSONObject raw = new JSONObject(rawJson);
-        return raw.getInt("id");
+    public int processSearchDataId(String rawJson) throws JsonInputException {
+        try {
+            JSONObject raw = new JSONObject(rawJson);
+            return raw.getInt("id");
+        } catch (Exception e) {
+            throw new JsonInputException();            
+        }
     }
 
     /**
@@ -67,9 +71,13 @@ public class JsonProcessor {
      * @param {String} rawJson - Raw request body
      * @return {String} - Secret for requested tree (for accessing in database)
      */
-    public String processSearchDataSecret(String rawJson) {
-        JSONObject raw = new JSONObject(rawJson);
-        return raw.getString("secret");
+    public String processSearchDataSecret(String rawJson) throws JsonInputException {
+        try {
+            JSONObject raw = new JSONObject(rawJson);
+            return raw.getString("secret");
+        } catch (Exception e) {
+            throw new JsonInputException();
+        }
     }
 
 
@@ -79,13 +87,17 @@ public class JsonProcessor {
      * @param {String} rawJson - Raw request body
      * @return {double[]} - Array of two keys, to be used as key for searching tree
      */
-    public double[] processSearchDataKey(String rawJson) {
-        JSONObject body = new JSONObject(rawJson);
-        JSONObject rawKey = body.getJSONObject("key");
-        double[] key = new double[2];
-        key[0] = Double.valueOf(rawKey.get("key1").toString());
-        key[1] = Double.valueOf(rawKey.get("key2").toString());
-        return key;
+    public double[] processSearchDataKey(String rawJson) throws JsonInputException {
+        try {
+            JSONObject body = new JSONObject(rawJson);
+            JSONObject rawKey = body.getJSONObject("key");
+            double[] key = new double[2];
+            key[0] = Double.valueOf(rawKey.get("key1").toString());
+            key[1] = Double.valueOf(rawKey.get("key2").toString());
+            return key;
+        } catch (Exception e) {
+            throw new JsonInputException();
+        }
     }
 
 
@@ -97,24 +109,28 @@ public class JsonProcessor {
     }
 
 
-    private TreeCreatePayloadItem convertItem(JSONObject rawItem) {
+    private TreeCreatePayloadItem convertItem(JSONObject rawItem) throws JsonInputException {
 
         /*
          * Expected input
          * {"location":{"area":"Cumbria","name":"Carlisle Airport","id":"14"},"lat":54,"long":-2}
          */
 
-        double key1 = Double.parseDouble(rawItem.get("key1").toString());
-        double key2 = Double.parseDouble(rawItem.get("key2").toString());
-        double[] keys = new double[2];
-        keys[0] = key1;
-        keys[1] = key2;
-        JSONObject dataObject = (JSONObject) rawItem.get("data");
-        String dataString = dataObject.toString();
+        try {
+            double key1 = Double.parseDouble(rawItem.get("key1").toString());
+            double key2 = Double.parseDouble(rawItem.get("key2").toString());
+            double[] keys = new double[2];
+            keys[0] = key1;
+            keys[1] = key2;
+            JSONObject dataObject = (JSONObject) rawItem.get("data");
+            String dataString = dataObject.toString();
 
-        TreeCreatePayloadItem item = new TreeCreatePayloadItem(keys, dataString);
+            TreeCreatePayloadItem item = new TreeCreatePayloadItem(keys, dataString);
 
-        return item;
+            return item;
+        } catch (Exception e) {
+            throw new JsonInputException();
+        }
     }
     
 

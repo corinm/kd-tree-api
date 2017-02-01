@@ -51,10 +51,10 @@ public class Main {
       } catch (JsonInputException e) {
         // Return new json object representing error
         res.status(400);
-        JSONObject error = new JSONObject();
-        error.put("status", "error");
-        error.put("message", "Invalid input when trying to process JSON");
-        return error;
+        return throwNewError("Invalid input when trying to process JSON");
+      } catch (DatabaseConnectionException e) {
+        res.status(500);
+        return throwNewError("Internal server error");
       }
     });
 
@@ -67,22 +67,35 @@ public class Main {
 
       // Process JSON
       JsonProcessor p = new JsonProcessor();
-      int requestedId = p.processSearchDataId(body);
-      double[] requestedKey = p.processSearchDataKey(body);
-      String providedSecret = p.processSearchDataSecret(body);
 
-      // Retrieve stored tree
-      String jsonTree = Database.loadTree(requestedId, providedSecret);
-      Gson gson = new Gson();
-      Tree tree = gson.fromJson(jsonTree, Tree.class);
+      try {
+        int requestedId = p.processSearchDataId(body);
+        double[] requestedKey = p.processSearchDataKey(body);
+        String providedSecret = p.processSearchDataSecret(body);
 
-      // Search tree for nearest match
-      String result = p.processSearchResult(tree.searchTree(requestedKey));
+        // Retrieve stored tree
+        String jsonTree = Database.loadTree(requestedId, providedSecret);
+        Gson gson = new Gson();
+        Tree tree = gson.fromJson(jsonTree, Tree.class);
 
-      // Return match's 'data' attribute
-      return result;
+        // Search tree for nearest match
+        String result = p.processSearchResult(tree.searchTree(requestedKey));
+
+        // Return match's 'data' attribute
+        return result;
+      } catch (JsonInputException e) {
+        res.status(400);
+        return throwNewError("Invalid input when trying to process JSON");
+      }
     });
 
   }
+
+  private static JSONObject throwNewError(String message) {
+    JSONObject error = new JSONObject();
+    error.put("status", "error");
+    error.put("message", message);
+    return error;
+  };
 
 }

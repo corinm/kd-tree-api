@@ -11,7 +11,7 @@ public class Database {
      * 
      * @return {int} - Database generated id for stored tree
      */
-    public static int storeTree(String tree) {
+    public static int storeTree(String tree) throws DatabaseConnectionException, SQLException {
 
       Connection connection = null;
 
@@ -40,18 +40,17 @@ public class Database {
         return returnedId;
 
       } catch (Exception e) {
-        e.printStackTrace();
+        throw new DatabaseConnectionException();
 
       } finally {
         if (connection != null) {
           try {
             connection.close();
           } catch (SQLException e) {
-            e.printStackTrace();
+            throw new SQLException();
           }
       }
     }
-    return 0;
   }
 
 
