@@ -29,6 +29,13 @@ On success will return an id (integer) and secret (string) for the created tree,
     secret: "9idjrri4v30imbelutpe0jbka1"
 }
 ```
+On error will return an error object:
+```
+{
+  "status": "error",
+  "message": "Invalid input when trying to process JSON"
+}
+```
 
 
 ### Find closest match to a given key

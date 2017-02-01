@@ -1,5 +1,7 @@
 import static spark.Spark.*;
 
+import org.json.JSONObject;
+
 import com.google.gson.Gson;
 
 public class Main {
@@ -30,18 +32,30 @@ public class Main {
 
       // Create tree
       String body = req.body();
-      TreeCreatePayloadItem[] items = p.processCreateData(body);
-      t.createTree(items);
 
-      // Store tree & get id, generate and store secret
-      String jsonTree = gson.toJson(t);
-      int idOfStoredTree = Database.storeTree(jsonTree);
-      String secret = SecretGenerator.generateNewSecret();
-      Database.storeSecret(idOfStoredTree, secret);
+      // TODO: Check body contains appropriate data
 
-      // Return tree's id
-      String response = p.createReturnJson(idOfStoredTree, secret);
-      return response;
+      try {
+        TreeCreatePayloadItem[] items = p.processCreateData(body);
+        t.createTree(items);
+
+        // Store tree & get id, generate and store secret
+        String jsonTree = gson.toJson(t);
+        int idOfStoredTree = Database.storeTree(jsonTree);
+        String secret = SecretGenerator.generateNewSecret();
+        Database.storeSecret(idOfStoredTree, secret);
+
+        // Return tree's id
+        String response = p.createReturnJson(idOfStoredTree, secret);
+        return response;
+      } catch (JsonInputException e) {
+        // Return new json object representing error
+        res.status(400);
+        JSONObject error = new JSONObject();
+        error.put("status", "error");
+        error.put("message", "Invalid input when trying to process JSON");
+        return error;
+      }
     });
 
     /*

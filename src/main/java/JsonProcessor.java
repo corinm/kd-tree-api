@@ -8,24 +8,31 @@ public class JsonProcessor {
      * @param {String} rawJson - Raw request body
      * @return {TreeCreatePayloadItem[]} - Data format required for creating a tree
      */
-    public TreeCreatePayloadItem[] processCreateData(String rawJson) {
+    public TreeCreatePayloadItem[] processCreateData(String rawJson) throws JsonInputException {
 
-        JSONArray rawItems = new JSONArray(rawJson);
+        try {
 
-        // Create new array of TreeCreatePayloadItems of required length
-        int count = rawItems.length();
-        TreeCreatePayloadItem[] items = new TreeCreatePayloadItem[count];
+            JSONArray rawItems = new JSONArray(rawJson);
+            
+            // Create new array of TreeCreatePayloadItems of required length
+            int count = rawItems.length();
+            TreeCreatePayloadItem[] items = new TreeCreatePayloadItem[count];
 
-        // Iterate over JSONObjects in rawItems, converting to TreeCreatePayloadItems
-        // Insert each into items array
-        for (int i = 0; i < rawItems.length(); i++) {
-            JSONObject rawItem = (JSONObject) rawItems.get(i);
+            // Iterate over JSONObjects in rawItems, converting to TreeCreatePayloadItems
+            // Insert each into items array
+            for (int i = 0; i < rawItems.length(); i++) {
+                JSONObject rawItem = (JSONObject) rawItems.get(i);
 
-            TreeCreatePayloadItem item = this.convertItem(rawItem);
-            items[i] = item;
+                TreeCreatePayloadItem item = this.convertItem(rawItem);
+                items[i] = item;
+            }
+            
+            return items;
+
+        } catch (Exception e) {
+            throw new JsonInputException();
         }
         
-        return items;
     }
 
 
@@ -75,7 +82,6 @@ public class JsonProcessor {
     public double[] processSearchDataKey(String rawJson) {
         JSONObject body = new JSONObject(rawJson);
         JSONObject rawKey = body.getJSONObject("key");
-        System.out.println(rawKey);
         double[] key = new double[2];
         key[0] = Double.valueOf(rawKey.get("key1").toString());
         key[1] = Double.valueOf(rawKey.get("key2").toString());
